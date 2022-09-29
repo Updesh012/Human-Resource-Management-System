@@ -1,7 +1,7 @@
 create table admin
 (
 id int primary key auto_increment,
-password varchar(25) unique not null,
+password varchar(25) binary unique not null,
 name varchar(25) not null,
 email varchar(35) unique not null
 );
@@ -13,17 +13,56 @@ email varchar(35) unique not null
  /////////////////////////////////////////////////////////////////////////
  
  
+ create table employee
+ (
+ empId int primary key auto_increment,
+ empName varchar(35) not null,
+ empSalary double(9,2) not null,
+ empRole varchar(35) not null,
+ empPassword varchar(35) binary  unique not null ,
+ empEmail varchar(50) unique not null,
+ did int, 
+ FOREIGN KEY(did) References department(depId)
+ ON DELETE CASCADE 
+ );
+ 
+ insert into employee(empName,empSalary,empRole,empPassword,empEmail,did) values('ram',20000,'tester','123','ram@gmail.com',5);
  
  
+ ////////////////////////////////////////////////////////////////////////////////
+ 
+ create table department
+ (
+ depId int primary key auto_increment, 
+ depName varchar(50) not null 
+ );
+ 
+ insert into department(depName) values ('hr');
+ insert into department(depName) values ('Sales');
+ insert into department(depName) values ('Marketing');
+ insert into department(depName) values ('IT');
+ 
+ //////////////////////////////////////////////////////////////////////////////////
+ 
+ create table leave
+ (
+
+
+ 
+ reason varchar(255),
+ permission varchar(255),
+ empId int unique,
+ 
+ );
+ 
+  leaveNum int primary key auto_increment,
+ 
+  emplName varchar(35) not null,
+ leaveDura int not null,
  
  
- 
- 
- 
- 
- 
- 
- 
+ FOREIGN KEY(leaveNum) references employee(empId)
+ ON DELETE CASCADE
  
  
  

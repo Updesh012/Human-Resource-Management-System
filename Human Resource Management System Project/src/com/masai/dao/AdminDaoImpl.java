@@ -5,6 +5,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import com.masai.bean.Admin;
+import com.masai.bean.Employee;
 import com.masai.exception.AdminException;
 import com.masai.utility.GetConnection;
 
@@ -95,9 +96,41 @@ public class AdminDaoImpl implements AdminDao{
 //	******************************Login For Admin************************************	
 	
 	
+//	***************************add new Employee*****************************
+	
+	public String addEmployee(Employee emp) {
+		
+		String message = "Not Insetered";
+		
+		try(Connection conn = GetConnection.connection()) {
+			
+			PreparedStatement ps = conn.prepareStatement
+					("INSERT INTO employee(empName,empSalary,empRole,empPassword,empEmail,did) values(?,?,?,?,?,?)" );
+			ps.setString(1, emp.getEmpName());
+			ps.setDouble(2, Double.parseDouble(emp.getEmpSalary()));
+			ps.setString(3, emp.getEmpRole());
+			ps.setString(4, emp.getEmpPassword());
+			ps.setString(5, emp.getEmpEmail());
+			ps.setInt(6, Integer.parseInt(emp.getDeptId()));
+			
+			int x = ps.executeUpdate();
+			if(x > 0) {
+				message = "Employee Successfully Inserted";
+			}
+			
+		} catch (SQLException e) {
+			
+			message = e.getMessage();
+			
+		}
+		
+		
+		
+		return message;
+	}
 	
 	
 	
-
+//	***************************add new Employee*****************************
 	
 }
