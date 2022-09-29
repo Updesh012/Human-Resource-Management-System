@@ -16,7 +16,7 @@ public class GetConnection {
 			e.printStackTrace();
 		}
 		
-		String url = "jdbc:mysql://localhost:3306/hr_management";
+		String url = "jdbc:mysql://localhost:3306/hrms";
 		
 		try {
 			conn = DriverManager.getConnection(url, "root", "updesh");
