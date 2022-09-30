@@ -3,12 +3,17 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 import com.masai.bean.Admin;
+import com.masai.bean.Department;
 import com.masai.bean.Employee;
 import com.masai.checkdetails.Check;
 import com.masai.exception.AdminException;
+import com.masai.exception.DepartmentException;
+import com.masai.exception.EmployeeException;
 import com.masai.utility.GetConnection;
 
 
@@ -320,6 +325,87 @@ public class AdminDaoImpl implements AdminDao{
 		
 		return message;
 	}
+
+	//////////////////////////// Get all Department///////////////////////////////
+	
+	public List<Department> getAllDepartments() throws DepartmentException{
+		
+		List<Department> list = new ArrayList<>();
+		
+		try(Connection conn = GetConnection.connection()) {
+			
+			PreparedStatement ps = conn.prepareStatement("SELECT * FROM department");
+			
+			ResultSet rs = ps.executeQuery();
+			
+			while(rs.next()) {
+				
+				int id = rs.getInt("depId");
+				String name = rs.getString("depName");
+				
+				Department dep = new Department(id, name);
+				list.add(dep);
+				
+			}
+			
+			
+		} catch (Exception e) {
+		   throw new DepartmentException(e.getMessage());	
+		}
+		
+		if(list.size() == 0) {
+			System.out.println("No record found");
+		}
+		
+		
+		
+		return list;
+	}
+	
+	
+	///////////////////////////////// Get All Employees ////////////////////////////////////
+	
+	public List<Employee> getAllEmployees() throws EmployeeException{
+		
+		List<Employee> list = new ArrayList<>();
+		
+		try(Connection conn = GetConnection.connection()) {
+			
+			PreparedStatement ps = conn.prepareStatement("SELECT * FROM employee");
+			
+			ResultSet rs = ps.executeQuery();
+			
+			while(rs.next()) {
+				
+				int id = rs.getInt("empId");
+				String name = rs.getString("empName");
+				String sal = rs.getString("empSalary");
+				String role = rs.getString("empRole");
+				String did = rs.getString("did");
+				
+				Employee emp = new Employee(id, name, sal, role, did);
+				list.add(emp);
+			}
+			
+		} catch (SQLException e) {
+			throw new EmployeeException(e.getMessage());
+		}
+		
+		if(list.size() == 0) {
+			System.out.println("No data found");
+		}
+		
+		
+		return list;
+	}
+	
+	
+	
+	
+	
+	
+	
+	
 	
 }
 
