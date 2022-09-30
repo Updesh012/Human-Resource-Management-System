@@ -3,6 +3,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Scanner;
 
 import com.masai.bean.Admin;
 import com.masai.bean.Employee;
@@ -238,6 +239,90 @@ public class AdminDaoImpl implements AdminDao{
 	/////////////////////////////transfer Employee to existing Department//////////////////////////////
 	
 	
-	
+	public String transferEmployee() {
+		Scanner s = new Scanner(System.in);
+		String message = "Transfer Failed";
+		boolean flag1 = true;
+		boolean flag2 = true;
+		String empId = null;
+		String deptId = null;
+		
+		while(flag1) {
+			
+			System.out.println("Enter the Employee Id that you want to transfer");
+			String em = Check.checkEmpId();
+			empId = em;
+			try(Connection conn = GetConnection.connection()) {
+				
+				PreparedStatement ps = conn.prepareStatement("SELECT * FROM employee WHERE empId = ?");
+				ps.setInt(1, Integer.parseInt(em));
+				
+				ResultSet rs = ps.executeQuery();
+				
+				if(rs.next()) {
+					flag1=false;
+				}else {
+					System.out.println("Employee not present with this Id");
+				}
+				
+			} catch (Exception e) {
+				message = e.getMessage();
+			}
+			
+			
+		}
+		
+//		*************************checking for department****************************
+		
+		while(flag2) {
+			
+			System.out.println("Department Id in which you want to transfer Employee");
+			String de = Check.checkDeptid();
+			deptId = de;
+			try(Connection conn = GetConnection.connection()) {
+				
+				PreparedStatement ps = conn.prepareStatement("SELECT * FROM department WHERE depId = ?");
+				ps.setInt(1, Integer.parseInt(de));
+				
+				ResultSet rs = ps.executeQuery();
+				
+				if(rs.next()) {
+					flag2 = false;
+				}else {
+					System.out.println("No department available for this Id");
+				}
+				
+			} catch (Exception e) {
+				message = e.getMessage();
+				
+			}
+			
+		}
+			
+//		************************transfering the employee*************************
+			
+		try (Connection conn = GetConnection.connection()){
+			
+			PreparedStatement ps = conn.prepareStatement("UPDATE employee SET did = ? WHERE empId = ?");
+			ps.setInt(1, Integer.parseInt(deptId));
+			ps.setInt(2, Integer.parseInt(empId));
+			
+			int x = ps.executeUpdate();
+			
+			if(x > 0) {
+				message = "Employee with Id "+empId+" has been tranfered to Department Id "+deptId+"";
+			}
+			
+		} catch (SQLException e) {
+			message = e.getMessage();
+		}
+		
+		
+		return message;
+	}
 	
 }
+
+
+
+

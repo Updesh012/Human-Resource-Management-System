@@ -16,4 +16,6 @@ public interface AdminDao {
 	
 	public String updateDepartment( String depName);
 	
+	public String transferEmployee();
+	
 }

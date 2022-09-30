@@ -143,10 +143,28 @@ public class Check {
 		return deptid;
 	}
 	
+	///////////////////////check employeeId////////////////////////
 	
 	
-	
-	
+	public static String checkEmpId() {
+		
+		Scanner s = new Scanner(System.in);
+		boolean flag = true;
+		String deptid=null;
+		while(flag) {
+//		System.out.println("Enter department ID");
+		String did = s.nextLine();
+			try {
+				int x = Integer.parseInt(did);
+				deptid = x+"";
+				flag = false;
+				}catch(Exception e) {
+					System.out.println("please enter number only");
+				}
+		}
+		
+		return deptid;
+	}
 	
 	
 	
