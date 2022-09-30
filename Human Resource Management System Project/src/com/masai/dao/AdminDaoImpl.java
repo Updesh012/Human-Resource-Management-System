@@ -10,10 +10,12 @@ import java.util.Scanner;
 import com.masai.bean.Admin;
 import com.masai.bean.Department;
 import com.masai.bean.Employee;
+import com.masai.bean.Leave;
 import com.masai.checkdetails.Check;
 import com.masai.exception.AdminException;
 import com.masai.exception.DepartmentException;
 import com.masai.exception.EmployeeException;
+import com.masai.exception.LeaveException;
 import com.masai.utility.GetConnection;
 
 
@@ -395,6 +397,43 @@ public class AdminDaoImpl implements AdminDao{
 			System.out.println("No data found");
 		}
 		
+		
+		return list;
+	}
+	
+	////////////////////// Getting Leaves Details/////////////////////////////
+	
+	public List<Leave> getAllLeavesRequest() throws LeaveException{
+		
+		List<Leave> list = new ArrayList<>();
+		
+		try (Connection conn = GetConnection.connection()){
+			
+			PreparedStatement ps = conn.prepareStatement("SELECT * FROM leaveTable WHERE reason IS NOT Null AND permission IS null");
+			
+			ResultSet rs =  ps.executeQuery();
+			
+			while(rs.next()) {
+				
+				String ln = rs.getString("leaveNum");
+				String id = rs.getString("empId");
+				String name = rs.getString("emplName");
+				String dur = rs.getString("leavedura");
+				String reason = rs.getString("reason");
+				
+				Leave l = new Leave(ln, name, dur, reason, id);
+				
+				list.add(l);
+				
+			}
+			
+		} catch (SQLException e) {
+			throw new LeaveException(e.getMessage());
+		}
+		
+			if(list.size() == 0) {
+				System.out.println("No record found");
+			}
 		
 		return list;
 	}

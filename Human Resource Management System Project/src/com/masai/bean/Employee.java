@@ -45,6 +45,14 @@ public class Employee {
 		this.deptId = deptId;
 		
 	}
+	
+	public Employee(int empId, String empName,  String empPassword,String empEmail) {
+		super();
+		this.empId = empId;
+		this.empName = empName;
+		this.empPassword = empPassword;
+		this.empEmail = empEmail;
+	}
 
 	public int getEmpId() {
 		return empId;

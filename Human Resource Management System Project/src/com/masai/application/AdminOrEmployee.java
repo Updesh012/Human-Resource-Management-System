@@ -4,8 +4,12 @@ import java.sql.SQLException;
 import java.util.Scanner;
 
 import com.masai.bean.Admin;
+import com.masai.bean.Employee;
 import com.masai.dao.AdminDaoImpl;
+import com.masai.dao.EmployeeDao;
+import com.masai.dao.EmployeeDaoImpl;
 import com.masai.exception.AdminException;
+import com.masai.exception.EmployeeException;
 
 public class AdminOrEmployee {
 
@@ -21,6 +25,7 @@ public class AdminOrEmployee {
 			switch(value) {
 			
 			case 1 : 
+			{
 				System.out.println("admin");
 				
 				System.out.println("Enter your password");
@@ -41,11 +46,33 @@ public class AdminOrEmployee {
 					System.out.println(e.getMessage());
 					
 				}
-				
+			}	
 				
 				break;
 			case 2 :
-				System.out.println("employee");
+				
+				System.out.println("Employee");
+				
+				System.out.println("Enter your password");
+				String pass = s.nextLine();
+				System.out.println("Enter your email");
+				String email = s.nextLine();
+				
+				try {
+					
+					EmployeeDao ed = new EmployeeDaoImpl();
+					Employee employee = ed.loginForEmployee(pass, email);
+					
+					
+					System.out.println("Welcome "+employee.getEmpName());
+					EmployeeOperations eo = new EmployeeOperations();
+					eo.employeeOper();
+					
+				} catch (EmployeeException e) {
+					System.out.println(e.getMessage());
+					
+				}
+				
 				break;
 			default :
 				System.out.println("Please enter valid number");
