@@ -23,11 +23,13 @@ email varchar(35) unique not null
  empEmail varchar(50) unique not null,
  did int, 
  FOREIGN KEY(did) References department(depId)
- ON DELETE CASCADE 
+ ON DELETE CASCADE ON UPDATE CASCADE
  );
  
- insert into employee(empName,empSalary,empRole,empPassword,empEmail,did) values('ram',20000,'tester','123','ram@gmail.com',5);
- 
+ insert into employee(empName,empSalary,empRole,empPassword,empEmail,did) values('ram',20000,'tester','123','ram@gmail.com',3);
+ insert into employee(empName,empSalary,empRole,empPassword,empEmail,did) values('shyam',10000,'tester','shyam#@','shyam#@gmail.com',3);
+ insert into employee(empName,empSalary,empRole,empPassword,empEmail,did) values('sita',30000,'coder','sita@','sita#@gmail.com',4);
+ insert into employee(empName,empSalary,empRole,empPassword,empEmail,did) values('updesh',40000,'HR','updesh@','updesh#@gmail.com',2);
  
  ////////////////////////////////////////////////////////////////////////////////
  
@@ -44,25 +46,25 @@ email varchar(35) unique not null
  
  //////////////////////////////////////////////////////////////////////////////////
  
- create table leave
+ create table leaveTable
  (
-
-
- 
+ leaveNum int primary key auto_increment,
+ emplName varchar(35) not null,
+ leaveDura int,
  reason varchar(255),
  permission varchar(255),
  empId int unique,
- 
+ FOREIGN KEY(leaveNum) references employee(empId)
+ ON DELETE CASCADE ON UPDATE CASCADE
  );
  
-  leaveNum int primary key auto_increment,
  
-  emplName varchar(35) not null,
- leaveDura int not null,
+ insert into leaveTable(emplName,leaveDura,empId) values('ram',2,4);
  
+  
  
- FOREIGN KEY(leaveNum) references employee(empId)
- ON DELETE CASCADE
+
  
+
  
  

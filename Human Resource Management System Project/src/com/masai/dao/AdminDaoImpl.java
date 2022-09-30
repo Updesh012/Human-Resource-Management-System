@@ -6,6 +6,7 @@ import java.sql.SQLException;
 
 import com.masai.bean.Admin;
 import com.masai.bean.Employee;
+import com.masai.checkdetails.Check;
 import com.masai.exception.AdminException;
 import com.masai.utility.GetConnection;
 
@@ -57,6 +58,9 @@ public class AdminDaoImpl implements AdminDao{
 		
 		
 		return message;
+		
+		
+		
 	}
 	
 //	******************************Update their profile************************************
@@ -117,6 +121,28 @@ public class AdminDaoImpl implements AdminDao{
 			if(x > 0) {
 				message = "Employee Successfully Inserted";
 			}
+			/////////////////////////create data in leaveTable//////////////////////////////
+			
+			PreparedStatement ps2 = conn.prepareStatement("SELECT empId FROM employee where empPassword = ?");
+			ps2.setString(1, emp.getEmpPassword());
+			
+			ResultSet rs = ps2.executeQuery();
+			int id = -1;
+			if(rs.next()) {
+				int i = rs.getInt("empId");
+				id = i;
+			}
+			
+			System.out.println("employee id is "+ id);
+			
+			//////////////////////inserting into leave table//////////////////////////////
+			
+			PreparedStatement ps3 = conn.prepareStatement("INSERT INTO leaveTable(emplName,empId) values (?,?)");
+			ps3.setString(1, emp.getEmpName());
+			ps3.setInt(2,id);
+			
+			ps3.executeUpdate();
+			
 			
 		} catch (SQLException e) {
 			
@@ -131,6 +157,87 @@ public class AdminDaoImpl implements AdminDao{
 	
 	
 	
-//	***************************add new Employee*****************************
+//	***************************add new Department*****************************
+	
+	public String addDepartment(String deptId,String deptName) {
+		
+		String message = "Not Added";
+		
+		try(Connection conn = GetConnection.connection()) {
+			
+			PreparedStatement ps = conn.prepareStatement("INSERT INTO department values(?,?)");
+			ps.setInt(1, Integer.parseInt(deptId));
+			ps.setString(2, deptName);
+			
+			int x = ps.executeUpdate();
+			if(x > 0) {
+				message = "New Department Added";
+			}
+				
+		} catch (Exception e) {
+				
+			message = e.getMessage();
+		}
+		
+		return message;
+	}
+	
+	
+	///////////////////////// update existing department/////////////////////////////////////////
+	
+	public String updateDepartment( String name) {
+		
+		String message = "Not Updated";
+		boolean flag = true;
+		String id = null;
+		while(flag) {
+			
+			System.out.println("Department Id in which you want to update");
+			String deptid = Check.checkDeptid();
+			id = deptid;
+			
+			try(Connection conn = GetConnection.connection()) {
+				
+				PreparedStatement ps = conn.prepareStatement("Select depName from department where depId = ?");
+				ps.setInt(1, Integer.parseInt(deptid));
+				
+				ResultSet rs = ps.executeQuery();
+				
+				if(rs.next()) {
+					flag = false;
+				}else {
+					System.out.println("No department available for this Id");
+					
+				}
+				
+			} catch (Exception e) {
+				
+			}
+		}
+			
+		try(Connection conn =  GetConnection.connection()) {
+			
+			PreparedStatement ps = conn.prepareStatement("UPDATE department SET depName = ? WHERE depId = ?");
+			ps.setString(1, name);
+			ps.setInt(2, Integer.parseInt(id));
+			
+			int x = ps.executeUpdate();
+			
+			if(x > 0) {
+				message = "Department Updated";
+			}
+			
+		} catch (Exception e) {
+			message = e.getMessage();
+		}
+			
+		return message;
+		
+	}
+	
+	/////////////////////////////transfer Employee to existing Department//////////////////////////////
+	
+	
+	
 	
 }

@@ -11,4 +11,9 @@ public interface AdminDao {
 	public Admin loginForAdmin(String pass, String email) throws AdminException;
 	
 	public String addEmployee(Employee employee);
+	
+	public String addDepartment(String deptid,String deptName);
+	
+	public String updateDepartment( String depName);
+	
 }
