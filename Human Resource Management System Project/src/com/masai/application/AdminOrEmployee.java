@@ -5,6 +5,7 @@ import java.util.Scanner;
 
 import com.masai.bean.Admin;
 import com.masai.bean.Employee;
+import com.masai.checkdetails.Check;
 import com.masai.dao.AdminDaoImpl;
 import com.masai.dao.EmployeeDao;
 import com.masai.dao.EmployeeDaoImpl;
@@ -28,10 +29,9 @@ public class AdminOrEmployee {
 			{
 				System.out.println("admin");
 				
-				System.out.println("Enter your password");
-				String pass = s.nextLine();
-				System.out.println("Enter your email");
-				String email = s.nextLine();
+				
+				String pass = Check.checkPass();
+				String email = Check.checkemail();
 				
 				try {
 					
@@ -50,32 +50,31 @@ public class AdminOrEmployee {
 				
 				break;
 			case 2 :
+			{	
 				
-				System.out.println("Employee");
 				
-				System.out.println("Enter your password");
-				String pass = s.nextLine();
-				System.out.println("Enter your email");
-				String email = s.nextLine();
-				
+				String pass = Check.checkPass();
+				String email = Check.checkemail();
 				try {
 					
 					EmployeeDao ed = new EmployeeDaoImpl();
 					Employee employee = ed.loginForEmployee(pass, email);
 					
 					
-					System.out.println("Welcome "+employee.getEmpName());
-					EmployeeOperations eo = new EmployeeOperations();
+					System.out.println("Welcome "+employee.getEmpName() +"   Id is   "+employee.getEmpId());
+					EmployeeOperations eo = new EmployeeOperations(employee.getEmpId(), pass, email);
 					eo.employeeOper();
 					
 				} catch (EmployeeException e) {
 					System.out.println(e.getMessage());
+					choice();
 					
 				}
-				
+			}	
 				break;
 			default :
 				System.out.println("Please enter valid number");
+				choice();
 				break;
 			}
 			
@@ -83,6 +82,7 @@ public class AdminOrEmployee {
 			
 		} catch (Exception e) {
 			System.out.println("Please enter Number");
+			choice();
 		}
 		
 		

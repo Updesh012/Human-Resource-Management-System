@@ -165,9 +165,72 @@ public class Check {
 		
 		return deptid;
 	}
+	////////////////////////check leave duration /////////////////////
+	public static String checkLeaveDur() {
+		
+		Scanner s = new Scanner(System.in);
+		boolean flag = true;
+		String deptid=null;
+		while(flag) {
+		System.out.println("Enter Leave duration in days");
+		String did = s.nextLine();
+			try {
+				int x = Integer.parseInt(did);
+				deptid = x+"";
+				flag = false;
+				}catch(Exception e) {
+					System.out.println("please enter number only");
+				}
+		}
+		
+		return deptid;
+	}
 	
 	
+	/////////////////////// check login Password ///////////////////////
 	
+	public static String checkPass() {
+		
 	
+		
+		boolean flag1 = true;
+		Scanner sc = new Scanner(System.in);
+		String password=null;
+		while(flag1) {
+			System.out.println("Enter Password");
+			String pass = sc.nextLine();
+			password = pass;
+			String res = Check.passwordCredentials(pass);
+			if(res.equals("Strong Password")) {
+				flag1 = false;
+			}
+			System.out.println(res);
+		}
+		
+		return password;
+		
+	}
+	
+	////////////////////// check login email /////////////////////////////
+	
+	public static String checkemail() {
+		
+		boolean flag2 = true;
+		Scanner sc = new Scanner(System.in);
+		String email=null;
+		while(flag2) {
+			System.out.println("Enter Email");
+			String e = sc.nextLine();
+			email = e;
+			String res = Check.emailCredentials(e);
+			if(res.equals("Strong Email")) {
+				flag2 = false;
+			}
+			System.out.println(res);
+		
+		}
+		return email;
+		
+	}
 	
 }
