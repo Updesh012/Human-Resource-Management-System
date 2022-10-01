@@ -13,4 +13,6 @@ public interface EmployeeDao {
 	
 	public String applyForLeave(int id);
 	
+	public String leaveResponse(int id);
+	
 }

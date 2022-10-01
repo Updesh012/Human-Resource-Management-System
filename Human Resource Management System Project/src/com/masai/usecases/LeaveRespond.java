@@ -3,16 +3,13 @@ package com.masai.usecases;
 import com.masai.dao.AdminDao;
 import com.masai.dao.AdminDaoImpl;
 
-public class TransferEmployee {
+public class LeaveRespond {
 	
-	
-	public void transferEmp() {
+	public void leaveRespond() {
 		
 		AdminDao ad = new AdminDaoImpl();
-		System.out.println(ad.transferEmployee());
-		
+		ad.respontToLeaveRequest();
 		
 	}
-	
 
 }

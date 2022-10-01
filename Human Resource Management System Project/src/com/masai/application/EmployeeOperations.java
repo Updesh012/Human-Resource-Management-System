@@ -2,8 +2,10 @@ package com.masai.application;
 
 import java.util.Scanner;
 
+import com.masai.checkdetails.Check;
 import com.masai.usecases.ApplyForLeave;
 import com.masai.usecases.EmpViewProfile;
+import com.masai.usecases.ResponseFromAdmin;
 import com.masai.usecases.UpdateEmpProfile;
 
 public class EmployeeOperations {
@@ -26,9 +28,9 @@ public class EmployeeOperations {
 	
 	public static void employeeOper() {
 		
-		Scanner s = new Scanner(System.in);
-		System.out.println("Press\n 1. View your profile\n 2. Update your profile \n 3. Apply for leave");
-		int choice = s.nextInt();
+		
+		
+		int choice = (Integer.parseInt(Check.checkChoicesForEmp()));
 		
 		switch (choice) {
 		case 1: {
@@ -50,8 +52,16 @@ public class EmployeeOperations {
 			employeeOper();
 			break;
 		}
+		case 4 :{
+			
+			ResponseFromAdmin rfa = new ResponseFromAdmin(id);
+			rfa.response();
+			employeeOper();
+			break;
+		}
 		default:
-//			throw new IllegalArgumentException("Unexpected value: " + key);
+			System.out.println("Please enter valid number");
+			employeeOper();
 		}
 		
 		

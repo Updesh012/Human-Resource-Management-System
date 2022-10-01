@@ -6,6 +6,7 @@ import java.util.Scanner;
 import com.masai.bean.Admin;
 import com.masai.bean.Employee;
 import com.masai.checkdetails.Check;
+import com.masai.dao.AdminDao;
 import com.masai.dao.AdminDaoImpl;
 import com.masai.dao.EmployeeDao;
 import com.masai.dao.EmployeeDaoImpl;
@@ -35,7 +36,7 @@ public class AdminOrEmployee {
 				
 				try {
 					
-					AdminDaoImpl adi = new AdminDaoImpl();
+					AdminDao adi = new AdminDaoImpl();
 					Admin admin = adi.loginForAdmin(pass, email);
 					
 					System.out.println("Welcome "+admin.getName());

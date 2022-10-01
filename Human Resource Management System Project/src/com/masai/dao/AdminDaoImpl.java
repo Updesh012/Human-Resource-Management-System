@@ -438,6 +438,59 @@ public class AdminDaoImpl implements AdminDao{
 		return list;
 	}
 	
+	////////////////////// respond to leave request //////////////////////////
+	
+	public void respontToLeaveRequest() {
+		boolean flag = true;
+		while(flag) {
+		String id = Check.checkEmpId();
+		
+		try(Connection conn = GetConnection.connection()) {
+			
+			PreparedStatement ps = conn.prepareStatement("SELECT * FROM leaveTable WHERE empId = ? AND reason IS NOT null AND permission IS null");
+			ps.setInt(1, Integer.parseInt(id));
+			
+			ResultSet rs = ps.executeQuery();
+			
+			if(rs.next()) {
+				flag = false;
+
+				try(Connection conn2 = GetConnection.connection()) {
+					
+					Scanner s = new Scanner(System.in);
+					System.out.println("Enter accepted or rejected with message ");
+					String mess = s.nextLine();
+					PreparedStatement ps2 = conn2.prepareStatement("UPDATE leaveTable SET permission = ? WHERE empid = ?");
+					ps2.setString(1, mess);
+					ps2.setInt(2, Integer.parseInt(id));
+					
+					int x = ps2.executeUpdate();
+					if(x > 0) {
+						System.out.println("Responded!");
+					}else {
+						System.out.println("Something went wrong");
+					}
+					
+					
+				} catch (SQLException e) {
+					System.out.println(e.getMessage());
+				}
+				
+			}else {
+				System.out.println("no record found with this Employee Id");
+			}
+			
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+		}
+		
+	}	
+		
+		
+	
+	}
+	
+	
 	
 	
 	

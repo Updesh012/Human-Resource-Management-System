@@ -152,7 +152,7 @@ public class Check {
 		boolean flag = true;
 		String deptid=null;
 		while(flag) {
-//		System.out.println("Enter department ID");
+		System.out.println("Enter Employee ID");
 		String did = s.nextLine();
 			try {
 				int x = Integer.parseInt(did);
@@ -173,6 +173,49 @@ public class Check {
 		String deptid=null;
 		while(flag) {
 		System.out.println("Enter Leave duration in days");
+		String did = s.nextLine();
+			try {
+				int x = Integer.parseInt(did);
+				deptid = x+"";
+				flag = false;
+				}catch(Exception e) {
+					System.out.println("please enter number only");
+				}
+		}
+		
+		return deptid;
+	}
+	
+	///////////////////////// check employee choice /////////////////////////
+	
+	public static String checkChoicesForEmp() {
+		
+		Scanner s = new Scanner(System.in);
+		boolean flag = true;
+		String deptid=null;
+		while(flag) {
+			System.out.println("Press\n 1. View your profile\n 2. Update your profile \n 3. Apply for leave \n 4. Leave Response from Admin");
+		String did = s.nextLine();
+			try {
+				int x = Integer.parseInt(did);
+				deptid = x+"";
+				flag = false;
+				}catch(Exception e) {
+					System.out.println("please enter number only");
+				}
+		}
+		
+		return deptid;
+	}
+	////////////// check admin choice ////////////////////////////////////////
+	
+	public static String checkChoicesForAdmin() {
+		
+		Scanner s = new Scanner(System.in);
+		boolean flag = true;
+		String deptid=null;
+		while(flag) {
+		System.out.println("Press\n 1. Update your profile \n 2. Add new Employee \n 3. Transfer Employee from one department to another \n 4. Get all the employees Details \n 5. Add new Department \n 6. Update Department \n 7. Show all departments \n 8. Get all leaves details \n 9. Respond to employee leave");
 		String did = s.nextLine();
 			try {
 				int x = Integer.parseInt(did);

@@ -9,7 +9,7 @@ import com.masai.exception.DepartmentException;
 
 public class GetAllDepartments {
 
-	public static void main(String[] args) {
+	public void getAllDept() {
 		
 		AdminDao ad = new AdminDaoImpl();
 		

@@ -3,7 +3,18 @@ package com.masai.application;
 import java.util.Scanner;
 
 import com.masai.bean.Admin;
+import com.masai.checkdetails.Check;
 import com.masai.dao.AdminDaoImpl;
+import com.masai.usecases.AddDepartment;
+import com.masai.usecases.Addemployee;
+import com.masai.usecases.GetAllDepartments;
+import com.masai.usecases.GetAllEmployee;
+import com.masai.usecases.GetAllLeaves;
+import com.masai.usecases.LeaveRespond;
+import com.masai.usecases.TransferEmployee;
+import com.masai.usecases.UpdateAdminProfile;
+import com.masai.usecases.UpdateDepartment;
+import com.masai.usecases.UpdateEmpProfile;
 
 public class AdminOperations {
 	
@@ -22,22 +33,72 @@ public class AdminOperations {
 	
 	public void adminOper() {
 		
-		Scanner s = new Scanner(System.in);
+		int choice = Integer.parseInt(Check.checkChoicesForAdmin());
 		
-		AdminDaoImpl adi = new AdminDaoImpl(pass,email);
+		switch (choice) {
+		case 1: {
+			UpdateAdminProfile uaf = new UpdateAdminProfile(pass, email);
+			uaf.updateProfile();
+			adminOper();
+			break;
+		}
+		case 2:{
+			Addemployee ae = new Addemployee();
+			ae.addemp();
+			adminOper();
+			break;
+		}
+		case 3:{
+			TransferEmployee te = new TransferEmployee();
+			te.transferEmp();
+			adminOper();
+			break;
+		}
+		case 4:{
+			GetAllEmployee gae = new GetAllEmployee();
+			gae.allEmp();
+			adminOper();
+			break;
+		}
+		case 5:{
+			AddDepartment ad = new AddDepartment();
+			ad.addDepartment();
+			adminOper();
+			break;
+		}
+		case 6:{
+			UpdateDepartment ud = new UpdateDepartment();
+			ud.updateDept();
+			adminOper();
+			break;
+		}
+		case 7:{
+			GetAllDepartments gad = new GetAllDepartments();
+			gad.getAllDept();
+			adminOper();
+			break;
+		}
+		case 8:{
+			GetAllLeaves gal = new GetAllLeaves();
+			gal.getAllLeaves();
+			adminOper();
+			break;
+		}
+		case 9:{
+			LeaveRespond lr = new LeaveRespond();
+			lr.leaveRespond();
+			adminOper();
+			break;
+		}
+		default:
+			System.out.println("Prease press valid number");
+			adminOper();
+			break;
+		}
 		
-		System.out.println("enter the name");
-		String name =  s.nextLine();
-		System.out.println("enter the password");
-		String pass =  s.nextLine();
-		System.out.println("enter the email");
-		String email =  s.nextLine();
 		
-		Admin admin = new Admin(name, pass, email);
 		
-		String res = adi.updateProfile(admin);
-		System.out.println(res);
-		AdminOrEmployee.choice();
+		
 		
 		
 	}

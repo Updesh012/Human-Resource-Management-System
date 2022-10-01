@@ -9,7 +9,7 @@ import com.masai.exception.EmployeeException;
 
 public class GetAllEmployee {
 
-	public static void main(String[] args) {
+	public void allEmp() {
 		
 		AdminDao ad = new AdminDaoImpl();
 		

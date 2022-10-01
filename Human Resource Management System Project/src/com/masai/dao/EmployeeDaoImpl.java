@@ -12,6 +12,7 @@ import com.masai.checkdetails.Check;
 import com.masai.exception.AdminException;
 import com.masai.exception.EmployeeException;
 import com.masai.utility.GetConnection;
+import com.mysql.cj.xdevapi.Result;
 
 public class EmployeeDaoImpl implements EmployeeDao{
 		
@@ -169,6 +170,67 @@ public class EmployeeDaoImpl implements EmployeeDao{
 		return message;
 	}
 	
+	
+	////////////////////////// Leave Response from admin ///////////////////////////////////
+	
+	public String leaveResponse(int id) {
+		
+		String message = "Not Responded yet!";
+		
+		try (Connection conn = GetConnection.connection()){
+			
+			PreparedStatement ps = conn.prepareStatement("SELECT * FROM leaveTable WHERE empId = ? AND reason IS NOT null AND permission IS NOT null");
+			ps.setInt(1, id);
+			
+			ResultSet rs = ps.executeQuery();
+			
+			if(rs.next()) {
+				
+				try(Connection conn2 = GetConnection.connection()) {
+					
+					PreparedStatement ps2 = conn2.prepareStatement("SELECT permission FROM leaveTable WHERE empId = ?");
+					ps2.setInt(1, id);
+					
+					ResultSet rs2 = ps2.executeQuery();
+					
+					if(rs2.next()) {
+						String response = rs2.getString("permission");
+						message = response;
+//						********************setting again duration,reason,permission is null **************
+						try(Connection conn3 = GetConnection.connection()) {
+							
+							PreparedStatement ps3 = conn3.prepareStatement("UPDATE leaveTable SET reason = null, permission = null,leavedura = null WHERE empId = ?");
+							ps3.setInt(1, id);
+							
+							int set = ps3.executeUpdate();
+							
+							
+						} catch (SQLException e) {
+							message = e.getMessage();
+						}
+						
+						
+						
+						
+//						********************setting again duration,reason,permission is null **************
+					}else {
+						System.out.println("something went wrong");
+					}
+					
+				} catch (SQLException e) {
+					message = e.getMessage();
+				}
+				
+				
+			}
+			
+		} catch (SQLException e) {
+			message = e.getMessage();
+		}
+		
+		
+		return message;
+	}
 	
 	
 	

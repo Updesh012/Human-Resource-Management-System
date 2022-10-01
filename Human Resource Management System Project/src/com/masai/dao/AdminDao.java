@@ -31,4 +31,6 @@ public interface AdminDao {
 	
 	public List<Leave> getAllLeavesRequest() throws LeaveException;
 	
+	public void respontToLeaveRequest();
+	
 }

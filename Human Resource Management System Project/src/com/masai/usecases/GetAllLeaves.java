@@ -10,7 +10,7 @@ import com.masai.exception.LeaveException;
 public class GetAllLeaves {
 
 	
-	public static void main(String[] args) {
+	public void getAllLeaves() {
 		AdminDao ad = new AdminDaoImpl();
 	
 		try {

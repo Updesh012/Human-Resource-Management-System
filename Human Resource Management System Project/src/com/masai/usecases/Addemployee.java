@@ -8,7 +8,7 @@ import com.masai.dao.AdminDaoImpl;
 
 public class Addemployee {
 
-	public static void main(String[] args) {
+	public void addemp() {
 		
 		AdminDaoImpl adi = new AdminDaoImpl();
 		Scanner s = new Scanner(System.in);
@@ -24,7 +24,7 @@ public class Addemployee {
 		String res = adi.addEmployee(emp);
 		System.out.println(res);
 		
-	}
 	
+	}
 	
 }
