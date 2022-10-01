@@ -40,7 +40,8 @@ public class EmployeeDaoImpl implements EmployeeDao{
 				employee = new Employee(id,n, pass, email);
 			}else {
 				
-				throw new EmployeeException("Invalid Password or Email...");
+				throw new EmployeeException(" Invalid Password Or Email...");
+				
 			}
 			
 			

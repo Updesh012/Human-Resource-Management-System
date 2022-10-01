@@ -90,8 +90,17 @@ public class AdminOperations {
 			adminOper();
 			break;
 		}
+		case 10:{
+			AdminOrEmployee.choice();
+			break;
+		}
+		case 11:{
+			return;
+			
+		}
 		default:
-			System.out.println("Prease press valid number");
+			System.out.println("Please Press Valid Number");
+			System.out.println("==========================");
 			adminOper();
 			break;
 		}

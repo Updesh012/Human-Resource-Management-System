@@ -20,7 +20,7 @@ public class AdminOrEmployee {
 		Scanner s = new Scanner(System.in);
 		
 		try {
-			System.out.println("Type \n1 for Login as Admin \n2 for Login as Employee");
+			System.out.println(" Press \n 1.) Login Admin \n 2.) Login Employee \n==================");
 			int value = s.nextInt();
 			s.nextLine();
 			
@@ -28,8 +28,6 @@ public class AdminOrEmployee {
 			
 			case 1 : 
 			{
-				System.out.println("admin");
-				
 				
 				String pass = Check.checkPass();
 				String email = Check.checkemail();
@@ -39,13 +37,15 @@ public class AdminOrEmployee {
 					AdminDao adi = new AdminDaoImpl();
 					Admin admin = adi.loginForAdmin(pass, email);
 					
-					System.out.println("Welcome "+admin.getName());
+					System.out.println(" Welcome  --> "+admin.getName());
+					System.out.println("================================");
 					AdminOperations ao = new AdminOperations(pass,email);
 					ao.adminOper();
 					
 				} catch (AdminException e) {
 					System.out.println(e.getMessage());
-					
+					System.out.println("=================================");
+					choice();
 				}
 			}	
 				
@@ -62,7 +62,8 @@ public class AdminOrEmployee {
 					Employee employee = ed.loginForEmployee(pass, email);
 					
 					
-					System.out.println("Welcome "+employee.getEmpName() +"   Id is   "+employee.getEmpId());
+					System.out.println("Welcome --> "+employee.getEmpName() +"   Id is -->  "+employee.getEmpId());
+					System.out.println("========================================================================");
 					EmployeeOperations eo = new EmployeeOperations(employee.getEmpId(), pass, email);
 					eo.employeeOper();
 					
@@ -74,7 +75,8 @@ public class AdminOrEmployee {
 			}	
 				break;
 			default :
-				System.out.println("Please enter valid number");
+				System.out.println("Please Press Valid Number");
+				System.out.println("=========================");
 				choice();
 				break;
 			}
@@ -82,7 +84,8 @@ public class AdminOrEmployee {
 			
 			
 		} catch (Exception e) {
-			System.out.println("Please enter Number");
+			System.out.println("Please Enter Only Number");
+			System.out.println("=========================");
 			choice();
 		}
 		

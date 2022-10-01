@@ -54,7 +54,7 @@ email varchar(35) unique not null
  reason varchar(255),
  permission varchar(255),
  empId int unique,
- FOREIGN KEY(leaveNum) references employee(empId)
+ FOREIGN KEY(empId) references employee(empId)
  ON DELETE CASCADE ON UPDATE CASCADE
  );
  

@@ -59,8 +59,17 @@ public class EmployeeOperations {
 			employeeOper();
 			break;
 		}
+		case 5:{
+			AdminOrEmployee.choice();
+			break;
+		}
+		case 6:{
+			return;
+			
+		}
 		default:
-			System.out.println("Please enter valid number");
+			System.out.println("Please Press Valid Number");
+			System.out.println("==========================");
 			employeeOper();
 		}
 		

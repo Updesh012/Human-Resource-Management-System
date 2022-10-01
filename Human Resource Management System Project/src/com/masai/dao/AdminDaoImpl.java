@@ -125,6 +125,11 @@ public class AdminDaoImpl implements AdminDao{
 			ps.setString(5, emp.getEmpEmail());
 			ps.setInt(6, Integer.parseInt(emp.getDeptId()));
 			
+//			********************checking department available or not*********************************
+			
+			
+			
+//			********************checking department available or not*********************************
 			int x = ps.executeUpdate();
 			if(x > 0) {
 				message = "Employee Successfully Inserted";

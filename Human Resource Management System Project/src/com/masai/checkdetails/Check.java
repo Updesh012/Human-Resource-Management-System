@@ -10,13 +10,13 @@ public class Check {
 		String  message = null;
 		
 		if(s.length() < 4) {
-			message = "Password length must be greater or equal to 4";
+			message = "Password Length Must Be Greater Or Equal To 4";
 		}else if(s.contains("@") || s.contains("#") || s.contains("$") || s.contains("%") || s.contains("&")) {
 			
 			message = "Strong Password";
 			
 		}else {
-			message = "Password must contain at least one character from @,#,$,%,& ";
+			message = "Password Must Contain At Least One Character From -->  @,#,$,%,& ";
 		}
 		
 		
@@ -35,13 +35,16 @@ public class Check {
 		String password=null;
 		while(flag1) {
 			System.out.println("Give Employee Default Password");
+			
 			String pass = sc.nextLine();
 			password = pass;
 			String res = Check.passwordCredentials(pass);
 			if(res.equals("Strong Password")) {
 				flag1 = false;
-			}
+			}else {
 			System.out.println(res);
+			System.out.println("==============================");
+			}
 		}
 		
 		return password;
@@ -55,18 +58,18 @@ public class Check {
 		String message = "Strong Email";
 		
 		if(e.length() < 11) {
-			message = "Length of email must be greater than 10 including   @gmail.com";
+			message = "Length Of Email Must Be Greater Than 10 Including ->  @gmail.com";
 		}else if(e.contains("!") || e.contains("#") || e.contains("$") || e.contains("%") || e.contains("&")) {
 			
 			if(e.contains("@gmail.com")) {
 				
 				message = "Strong Email";
 			}else {
-				message = "Email must contain   @gmail.com";
+				message = "Email Must Contain ->  @gmail.com";
 			}
 			
 		}else {
-			message = "Email must contain at least one character from !,#,$,%,&";
+			message = "Email Must Contain At Least One Character From -->  !,#,$,%,&";
 		}
 		
 		
@@ -87,9 +90,10 @@ public class Check {
 			String res = Check.emailCredentials(e);
 			if(res.equals("Strong Email")) {
 				flag2 = false;
-			}
+			}else {
 			System.out.println(res);
-		
+			System.out.println("=====================");
+			}
 		}
 		return email;
 		
@@ -113,6 +117,7 @@ public class Check {
 				
 				}catch(Exception e) {
 					System.out.println("please enter number only");
+					System.out.println("========================");
 				}
 		}
 		
@@ -137,6 +142,7 @@ public class Check {
 				flag = false;
 				}catch(Exception e) {
 					System.out.println("please enter number only");
+					System.out.println("========================");
 				}
 		}
 		
@@ -160,6 +166,7 @@ public class Check {
 				flag = false;
 				}catch(Exception e) {
 					System.out.println("please enter number only");
+					System.out.println("=========================");
 				}
 		}
 		
@@ -180,6 +187,7 @@ public class Check {
 				flag = false;
 				}catch(Exception e) {
 					System.out.println("please enter number only");
+					System.out.println("=========================");
 				}
 		}
 		
@@ -194,7 +202,8 @@ public class Check {
 		boolean flag = true;
 		String deptid=null;
 		while(flag) {
-			System.out.println("Press\n 1. View your profile\n 2. Update your profile \n 3. Apply for leave \n 4. Leave Response from Admin");
+		System.out.println("Press\n 1.) View Your Profile \n 2.) Update Your Profile \n 3.) Apply For Leave \n 4.) Leave Response From Admin \n 5.) Back To Home Screen \n 6.) Exit ");
+		System.out.println("=====================================================");
 		String did = s.nextLine();
 			try {
 				int x = Integer.parseInt(did);
@@ -215,7 +224,8 @@ public class Check {
 		boolean flag = true;
 		String deptid=null;
 		while(flag) {
-		System.out.println("Press\n 1. Update your profile \n 2. Add new Employee \n 3. Transfer Employee from one department to another \n 4. Get all the employees Details \n 5. Add new Department \n 6. Update Department \n 7. Show all departments \n 8. Get all leaves details \n 9. Respond to employee leave");
+		System.out.println("Press\n 1.) Update Your Profile \n 2.) Add New Employee \n 3.) Transfer Employee from One Department To Another \n 4.) Get All The Employees Details \n 5.) Add New Department \n 6.) Update Department Name \n 7.) Get All Departments Details \n 8.) Get All Employees Leave Details \n 9.) Respond To Employee Leave \n 10.) Back to Home screen \n 11.) Exit");
+		System.out.println("======================================================");
 		String did = s.nextLine();
 			try {
 				int x = Integer.parseInt(did);
@@ -223,6 +233,7 @@ public class Check {
 				flag = false;
 				}catch(Exception e) {
 					System.out.println("please enter number only");
+					System.out.println("=========================");
 				}
 		}
 		
@@ -246,8 +257,10 @@ public class Check {
 			String res = Check.passwordCredentials(pass);
 			if(res.equals("Strong Password")) {
 				flag1 = false;
-			}
+			}else {
 			System.out.println(res);
+			System.out.println("====================================================");
+			}
 		}
 		
 		return password;
@@ -268,9 +281,10 @@ public class Check {
 			String res = Check.emailCredentials(e);
 			if(res.equals("Strong Email")) {
 				flag2 = false;
-			}
+			}else {
 			System.out.println(res);
-		
+			System.out.println("================================================");
+			}
 		}
 		return email;
 		
