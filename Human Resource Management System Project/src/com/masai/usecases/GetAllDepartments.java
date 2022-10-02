@@ -21,9 +21,9 @@ public class GetAllDepartments {
 				
 				for(Department d : list) {
 					
-					System.out.println("Department Id is :  "+ d.getDepId());
-					System.out.println("Department Name is :  "+d.getDepName());
-					System.out.println("=======================================");
+					System.out.println("Department Id Is          :        "+ d.getDepId());
+					System.out.println("Department Name Is        :        "+d.getDepName());
+					System.out.println("==================================================");
 					
 				}
 				
@@ -33,6 +33,7 @@ public class GetAllDepartments {
 		} catch (DepartmentException e) {
 			
 			System.out.println(e.getMessage());
+			System.out.println("==================================================");
 		}
 		
 	}

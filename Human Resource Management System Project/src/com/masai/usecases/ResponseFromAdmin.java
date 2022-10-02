@@ -20,6 +20,7 @@ public class ResponseFromAdmin {
 		EmployeeDao ed = new EmployeeDaoImpl();
 		String res = ed.leaveResponse(id);
 		System.out.println(res);
+		System.out.println("==================================================");
 	}
 	
 	

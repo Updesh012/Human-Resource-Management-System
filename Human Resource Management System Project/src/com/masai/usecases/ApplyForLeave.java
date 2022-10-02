@@ -21,6 +21,7 @@ public class ApplyForLeave {
 		EmployeeDao ed = new EmployeeDaoImpl();
 		String res = ed.applyForLeave(id);
 		System.out.println(res);
+		System.out.println("==================================================");
 		
 	}
 	

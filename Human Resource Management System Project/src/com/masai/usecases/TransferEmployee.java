@@ -10,7 +10,7 @@ public class TransferEmployee {
 		
 		AdminDao ad = new AdminDaoImpl();
 		System.out.println(ad.transferEmployee());
-		
+		System.out.println("==================================================");
 		
 	}
 	

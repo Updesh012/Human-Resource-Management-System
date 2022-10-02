@@ -1,8 +1,5 @@
 package com.masai.application;
-
-import java.sql.SQLException;
 import java.util.Scanner;
-
 import com.masai.bean.Admin;
 import com.masai.bean.Employee;
 import com.masai.checkdetails.Check;
@@ -20,7 +17,7 @@ public class AdminOrEmployee {
 		Scanner s = new Scanner(System.in);
 		
 		try {
-			System.out.println(" Press \n 1.) Login Admin \n 2.) Login Employee \n==================");
+			System.out.println(" Press \n 1.) Login Admin \n 2.) Login Employee \n 3.) Exit \n==================");
 			int value = s.nextInt();
 			s.nextLine();
 			
@@ -29,8 +26,8 @@ public class AdminOrEmployee {
 			case 1 : 
 			{
 				
-				String pass = Check.checkPass();
 				String email = Check.checkemail();
+				String pass = Check.checkPass();
 				
 				try {
 					
@@ -47,15 +44,15 @@ public class AdminOrEmployee {
 					System.out.println("=================================");
 					choice();
 				}
+				break;
 			}	
 				
-				break;
 			case 2 :
 			{	
 				
 				
-				String pass = Check.checkPass();
 				String email = Check.checkemail();
+				String pass = Check.checkPass();
 				try {
 					
 					EmployeeDao ed = new EmployeeDaoImpl();
@@ -64,7 +61,7 @@ public class AdminOrEmployee {
 					
 					System.out.println("Welcome --> "+employee.getEmpName() +"   Id is -->  "+employee.getEmpId());
 					System.out.println("========================================================================");
-					EmployeeOperations eo = new EmployeeOperations(employee.getEmpId(), pass, email);
+					EmployeeOperations eo = new EmployeeOperations(employee.getEmpId());
 					eo.employeeOper();
 					
 				} catch (EmployeeException e) {
@@ -72,14 +69,19 @@ public class AdminOrEmployee {
 					choice();
 					
 				}
-			}	
 				break;
+			}
+			case 3 :
+			{
+				return;
+			}
 			default :
 				System.out.println("Please Press Valid Number");
 				System.out.println("=========================");
 				choice();
 				break;
 			}
+			
 			
 			
 			

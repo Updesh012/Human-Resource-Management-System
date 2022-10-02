@@ -10,7 +10,7 @@ public class Leave {
 	private String empId;
 	
 	public Leave() {
-		// TODO Auto-generated constructor stub
+		
 	}
 
 	public Leave(String leaveNum, String name, String duration, String reason, String permission, String empId) {

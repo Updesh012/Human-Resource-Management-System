@@ -8,8 +8,9 @@ public class LeaveRespond {
 	public void leaveRespond() {
 		
 		AdminDao ad = new AdminDaoImpl();
-		ad.respontToLeaveRequest();
-		
+		String res = ad.respontToLeaveRequest();
+		System.out.println(res);
+		System.out.println("==================================================");
 	}
 
 }

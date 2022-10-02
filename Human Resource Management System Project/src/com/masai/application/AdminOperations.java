@@ -1,10 +1,5 @@
 package com.masai.application;
-
-import java.util.Scanner;
-
-import com.masai.bean.Admin;
 import com.masai.checkdetails.Check;
-import com.masai.dao.AdminDaoImpl;
 import com.masai.usecases.AddDepartment;
 import com.masai.usecases.Addemployee;
 import com.masai.usecases.GetAllDepartments;
@@ -14,7 +9,7 @@ import com.masai.usecases.LeaveRespond;
 import com.masai.usecases.TransferEmployee;
 import com.masai.usecases.UpdateAdminProfile;
 import com.masai.usecases.UpdateDepartment;
-import com.masai.usecases.UpdateEmpProfile;
+
 
 public class AdminOperations {
 	

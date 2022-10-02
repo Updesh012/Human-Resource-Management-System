@@ -18,11 +18,12 @@ public class Addemployee {
 		System.out.println("Enter Employee Role");
 		String role = s.nextLine();
 		String deptid = Check.checkDeptid();
-		String password = Check.checkPassword();
 		String email =  Check.checkEmail();
+		String password = Check.checkPassword();
 		Employee emp = new Employee(name, salary, role, password, email,deptid);
 		String res = adi.addEmployee(emp);
 		System.out.println(res);
+		System.out.println("==================================================");
 		
 	
 	}

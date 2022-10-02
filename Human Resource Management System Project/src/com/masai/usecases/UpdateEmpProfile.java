@@ -9,7 +9,7 @@ public class UpdateEmpProfile {
 	static int id;
 	
 	public UpdateEmpProfile() {
-		// TODO Auto-generated constructor stub
+		
 	}
 	public UpdateEmpProfile(int id) {
 		this.id = id;
@@ -20,6 +20,7 @@ public class UpdateEmpProfile {
 		EmployeeDao ed = new EmployeeDaoImpl();
 		String res = ed.updateProfile(id);
 		System.out.println(res);
+		System.out.println("==================================================");
 		if(res.equals("Updated successfully!")) {
 			AdminOrEmployee.choice();
 		}

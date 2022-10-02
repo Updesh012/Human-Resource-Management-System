@@ -1,6 +1,6 @@
 package com.masai.checkdetails;
-
 import java.util.Scanner;
+
 
 public class Check {
 
@@ -27,8 +27,6 @@ public class Check {
 	/////////////////////////////////check password/////////////////////////////////////////
 	
 	public static String checkPassword() {
-		
-	
 		
 		boolean flag1 = true;
 		Scanner sc = new Scanner(System.in);
@@ -95,6 +93,7 @@ public class Check {
 			System.out.println("=====================");
 			}
 		}
+		
 		return email;
 		
 	}
@@ -116,7 +115,7 @@ public class Check {
 				flag3 = false;
 				
 				}catch(Exception e) {
-					System.out.println("please enter number only");
+					System.out.println("Please Enter Number Only");
 					System.out.println("========================");
 				}
 		}
@@ -134,14 +133,14 @@ public class Check {
 		boolean flag = true;
 		String deptid=null;
 		while(flag) {
-		System.out.println("Enter department ID");
+		System.out.println("Enter Department ID");
 		String did = s.nextLine();
 			try {
 				int x = Integer.parseInt(did);
 				deptid = x+"";
 				flag = false;
 				}catch(Exception e) {
-					System.out.println("please enter number only");
+					System.out.println("Please Enter Number Only");
 					System.out.println("========================");
 				}
 		}
@@ -165,7 +164,7 @@ public class Check {
 				deptid = x+"";
 				flag = false;
 				}catch(Exception e) {
-					System.out.println("please enter number only");
+					System.out.println("Please Enter Number Only");
 					System.out.println("=========================");
 				}
 		}
@@ -179,14 +178,14 @@ public class Check {
 		boolean flag = true;
 		String deptid=null;
 		while(flag) {
-		System.out.println("Enter Leave duration in days");
+		System.out.println("Enter Leave Duration In Days");
 		String did = s.nextLine();
 			try {
 				int x = Integer.parseInt(did);
 				deptid = x+"";
 				flag = false;
 				}catch(Exception e) {
-					System.out.println("please enter number only");
+					System.out.println("Please Enter Number Only");
 					System.out.println("=========================");
 				}
 		}
@@ -210,7 +209,8 @@ public class Check {
 				deptid = x+"";
 				flag = false;
 				}catch(Exception e) {
-					System.out.println("please enter number only");
+					System.out.println("Please Enter Number Only");
+					System.out.println("========================");
 				}
 		}
 		
@@ -232,7 +232,7 @@ public class Check {
 				deptid = x+"";
 				flag = false;
 				}catch(Exception e) {
-					System.out.println("please enter number only");
+					System.out.println("Please Enter Number Only");
 					System.out.println("=========================");
 				}
 		}
@@ -286,6 +286,7 @@ public class Check {
 			System.out.println("================================================");
 			}
 		}
+	
 		return email;
 		
 	}

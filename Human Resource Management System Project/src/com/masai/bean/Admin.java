@@ -45,14 +45,7 @@ public class Admin {
 	}
 
 
-	@Override
-	public String toString() {
-//		return "Admin [name=" + name + ", password=" + password + ", email=" + email + "]";
-		return "Name is : " + name + 
-				"Password is : " + password +
-				"Email is : "+email;
-		
-	};
+	
 	
 	
 	

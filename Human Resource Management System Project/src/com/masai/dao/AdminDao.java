@@ -13,7 +13,7 @@ import com.masai.exception.LeaveException;
 
 public interface AdminDao {
 
-	public String updateProfile(Admin admin);
+	public String updateProfile(Admin admin) throws AdminException;
 	
 	public Admin loginForAdmin(String pass, String email) throws AdminException;
 	
@@ -31,6 +31,6 @@ public interface AdminDao {
 	
 	public List<Leave> getAllLeavesRequest() throws LeaveException;
 	
-	public void respontToLeaveRequest();
+	public String respontToLeaveRequest();
 	
 }

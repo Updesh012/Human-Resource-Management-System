@@ -18,11 +18,11 @@ public class GetAllEmployee {
 			
 			for(Employee e : list) {
 				
-				System.out.println("Employee Id is :  "+e.getEmpId());
-				System.out.println("Employee name is :  "+e.getEmpName());
-				System.out.println("Employee working in Deparment :  "+e.getDeptId());
-				System.out.println("Employee Salary is :  "+e.getEmpSalary());
-				System.out.println("Employee role is :  "+e.getEmpRole());
+				System.out.println("Employee Id Is                    :       "+e.getEmpId());
+				System.out.println("Employee Name Is                  :       "+e.getEmpName());
+				System.out.println("Employee Working In Deparment     :       "+e.getDeptId());
+				System.out.println("Employee Salary Is                :       "+e.getEmpSalary());
+				System.out.println("Employee Role Is                  :       "+e.getEmpRole());
 				System.out.println("========================================================");
 				
 			}
@@ -30,6 +30,7 @@ public class GetAllEmployee {
 		} catch (EmployeeException e) {
 			
 			System.out.println(e.getMessage());
+			System.out.println("==================================================");
 		}
 		
 		

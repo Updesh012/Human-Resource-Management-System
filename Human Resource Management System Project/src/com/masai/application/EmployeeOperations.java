@@ -1,29 +1,25 @@
 package com.masai.application;
-
-import java.util.Scanner;
-
 import com.masai.checkdetails.Check;
 import com.masai.usecases.ApplyForLeave;
 import com.masai.usecases.EmpViewProfile;
 import com.masai.usecases.ResponseFromAdmin;
 import com.masai.usecases.UpdateEmpProfile;
 
+
 public class EmployeeOperations {
 
-	static int id;
-	static String password;
-	static String email;
+	 static int id;
+	
 	
 	public EmployeeOperations() {
 	
 	}
 	
 	
-	public EmployeeOperations(int id, String password, String email) {
+	public EmployeeOperations(int id) {
 		super();
 		this.id = id;
-		this.password = password;
-		this.email = email;
+	
 	}
 	
 	public static void employeeOper() {

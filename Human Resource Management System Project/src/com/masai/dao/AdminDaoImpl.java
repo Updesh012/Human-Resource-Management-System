@@ -6,7 +6,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
-
 import com.masai.bean.Admin;
 import com.masai.bean.Department;
 import com.masai.bean.Employee;
@@ -38,7 +37,7 @@ public class AdminDaoImpl implements AdminDao{
 
 //******************************Update their profile************************************	
 	@Override
-	public String updateProfile(Admin admin) {
+	public String updateProfile(Admin admin) throws AdminException{
 		
 		String message = "Not Updated";
 		
@@ -61,7 +60,7 @@ public class AdminDaoImpl implements AdminDao{
 			
 		} catch (SQLException e) {
 			
-			message = e.getMessage();
+			throw new AdminException(e.getMessage());
 		}
 		
 		
@@ -71,7 +70,6 @@ public class AdminDaoImpl implements AdminDao{
 		
 	}
 	
-//	******************************Update their profile************************************
 	
 //	******************************Login For Admin************************************	
 	public Admin loginForAdmin(String pass, String email) throws AdminException{
@@ -105,7 +103,6 @@ public class AdminDaoImpl implements AdminDao{
 		
 		return admin;
 	}
-//	******************************Login For Admin************************************	
 	
 	
 //	***************************add new Employee*****************************
@@ -125,16 +122,12 @@ public class AdminDaoImpl implements AdminDao{
 			ps.setString(5, emp.getEmpEmail());
 			ps.setInt(6, Integer.parseInt(emp.getDeptId()));
 			
-//			********************checking department available or not*********************************
-			
-			
-			
-//			********************checking department available or not*********************************
+
 			int x = ps.executeUpdate();
 			if(x > 0) {
-				message = "Employee Successfully Inserted";
+				message = "Employee Added Successfully... ";
 			}
-			/////////////////////////create data in leaveTable//////////////////////////////
+			/////////////////////////Getting employee id from employee table//////////////////////////////
 			
 			PreparedStatement ps2 = conn.prepareStatement("SELECT empId FROM employee where empPassword = ?");
 			ps2.setString(1, emp.getEmpPassword());
@@ -146,9 +139,9 @@ public class AdminDaoImpl implements AdminDao{
 				id = i;
 			}
 			
-			System.out.println("employee id is "+ id);
 			
-			//////////////////////inserting into leave table//////////////////////////////
+			
+			//////////////////////inserting empid and empName in leave table//////////////////////////////
 			
 			PreparedStatement ps3 = conn.prepareStatement("INSERT INTO leaveTable(emplName,empId) values (?,?)");
 			ps3.setString(1, emp.getEmpName());
@@ -205,7 +198,7 @@ public class AdminDaoImpl implements AdminDao{
 		String id = null;
 		while(flag) {
 			
-			System.out.println("Department Id in which you want to update");
+			System.out.println("Department Id In Which You Want To Update");
 			String deptid = Check.checkDeptid();
 			id = deptid;
 			
@@ -219,12 +212,12 @@ public class AdminDaoImpl implements AdminDao{
 				if(rs.next()) {
 					flag = false;
 				}else {
-					System.out.println("No department available for this Id");
+					System.out.println("No Department Available For This Id");
 					
 				}
 				
 			} catch (Exception e) {
-				
+				message = e.getMessage();
 			}
 		}
 			
@@ -237,7 +230,7 @@ public class AdminDaoImpl implements AdminDao{
 			int x = ps.executeUpdate();
 			
 			if(x > 0) {
-				message = "Department Updated";
+				message = "Department Name Updated Successfully...";
 			}
 			
 		} catch (Exception e) {
@@ -261,7 +254,7 @@ public class AdminDaoImpl implements AdminDao{
 		
 		while(flag1) {
 			
-			System.out.println("Enter the Employee Id that you want to transfer");
+			System.out.println("Enter The Employee Id That You Want To Transfer");
 			String em = Check.checkEmpId();
 			empId = em;
 			try(Connection conn = GetConnection.connection()) {
@@ -274,7 +267,8 @@ public class AdminDaoImpl implements AdminDao{
 				if(rs.next()) {
 					flag1=false;
 				}else {
-					System.out.println("Employee not present with this Id");
+					System.out.println("Employee Not Present With This Id");
+					System.out.println("==================================");
 				}
 				
 			} catch (Exception e) {
@@ -288,7 +282,7 @@ public class AdminDaoImpl implements AdminDao{
 		
 		while(flag2) {
 			
-			System.out.println("Department Id in which you want to transfer Employee");
+			System.out.println("Department Id In Which You Want To Transfer Employee");
 			String de = Check.checkDeptid();
 			deptId = de;
 			try(Connection conn = GetConnection.connection()) {
@@ -301,7 +295,8 @@ public class AdminDaoImpl implements AdminDao{
 				if(rs.next()) {
 					flag2 = false;
 				}else {
-					System.out.println("No department available for this Id");
+					System.out.println("No Department Available For This Id");
+					System.out.println("===================================");
 				}
 				
 			} catch (Exception e) {
@@ -323,6 +318,7 @@ public class AdminDaoImpl implements AdminDao{
 			
 			if(x > 0) {
 				message = "Employee with Id "+empId+" has been tranfered to Department Id "+deptId+"";
+				
 			}
 			
 		} catch (SQLException e) {
@@ -361,7 +357,7 @@ public class AdminDaoImpl implements AdminDao{
 		}
 		
 		if(list.size() == 0) {
-			System.out.println("No record found");
+			System.out.println("No Department Available.");
 		}
 		
 		
@@ -399,7 +395,7 @@ public class AdminDaoImpl implements AdminDao{
 		}
 		
 		if(list.size() == 0) {
-			System.out.println("No data found");
+			System.out.println("No Employee Available");
 		}
 		
 		
@@ -437,7 +433,7 @@ public class AdminDaoImpl implements AdminDao{
 		}
 		
 			if(list.size() == 0) {
-				System.out.println("No record found");
+				System.out.println("No Record Found...");
 			}
 		
 		return list;
@@ -445,7 +441,21 @@ public class AdminDaoImpl implements AdminDao{
 	
 	////////////////////// respond to leave request //////////////////////////
 	
-	public void respontToLeaveRequest() {
+	public String respontToLeaveRequest() {
+		String message = "";
+		List<Leave> list = null;
+		try {
+			list = getAllLeavesRequest();
+		} catch (LeaveException e1) {
+			System.out.println(e1.getMessage());
+			
+		}
+		
+		if(list.size() == 0) {
+			
+		}else {
+		
+		
 		boolean flag = true;
 		while(flag) {
 		String id = Check.checkEmpId();
@@ -463,7 +473,7 @@ public class AdminDaoImpl implements AdminDao{
 				try(Connection conn2 = GetConnection.connection()) {
 					
 					Scanner s = new Scanner(System.in);
-					System.out.println("Enter accepted or rejected with message ");
+					System.out.println("Enter Response For Employee Leave");
 					String mess = s.nextLine();
 					PreparedStatement ps2 = conn2.prepareStatement("UPDATE leaveTable SET permission = ? WHERE empid = ?");
 					ps2.setString(1, mess);
@@ -471,28 +481,31 @@ public class AdminDaoImpl implements AdminDao{
 					
 					int x = ps2.executeUpdate();
 					if(x > 0) {
-						System.out.println("Responded!");
+						message = ("Responded!");
 					}else {
-						System.out.println("Something went wrong");
+						message =("Something went wrong");
 					}
 					
 					
 				} catch (SQLException e) {
-					System.out.println(e.getMessage());
+					message = e.getMessage();
 				}
 				
 			}else {
-				System.out.println("no record found with this Employee Id");
+				System.out.println("No Record Found With This Employee ID");
+				System.out.println("=====================================");
 			}
 			
 		} catch (SQLException e) {
-			System.out.println(e.getMessage());
+			message = (e.getMessage());
 		}
+		
 		
 	}	
 		
 		
-	
+		}
+		return message;
 	}
 	
 	

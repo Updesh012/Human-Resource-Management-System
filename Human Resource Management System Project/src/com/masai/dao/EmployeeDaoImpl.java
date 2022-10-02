@@ -1,18 +1,14 @@
 package com.masai.dao;
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Scanner;
-
-import com.masai.bean.Admin;
 import com.masai.bean.Employee;
 import com.masai.checkdetails.Check;
-import com.masai.exception.AdminException;
 import com.masai.exception.EmployeeException;
 import com.masai.utility.GetConnection;
-import com.mysql.cj.xdevapi.Result;
+
 
 public class EmployeeDaoImpl implements EmployeeDao{
 		
@@ -33,8 +29,7 @@ public class EmployeeDaoImpl implements EmployeeDao{
 			if(rs.next()) {
 				int id = rs.getInt("empId");
 				String n = rs.getString("empName");
-				String p = rs.getString("empPassword");
-				String e = rs.getString("empEmail");
+				
 				
 				
 				employee = new Employee(id,n, pass, email);
@@ -51,7 +46,7 @@ public class EmployeeDaoImpl implements EmployeeDao{
 		
 		return employee;
 	}
-//	******************************Login For Employee************************************	
+
 	
 	////////////////////////////  view profile ////////////////////////////
 	
@@ -68,7 +63,7 @@ public class EmployeeDaoImpl implements EmployeeDao{
 			
 			if(rs.next()) {
 				
-				int empId = rs.getInt("empId");
+				
 				String name = rs.getString("empName");
 				String deptId =  rs.getString("did");
 				String role = rs.getString("empRole");
@@ -100,10 +95,10 @@ public class EmployeeDaoImpl implements EmployeeDao{
 		try(Connection conn = GetConnection.connection()) {
 			
 			PreparedStatement ps = conn.prepareStatement("UPDATE employee SET empPassword = ? , empEmail = ? Where empId = ?");
-			ps.setString(1, Check.checkPass());
 			ps.setString(2, Check.checkemail());
+			ps.setString(1, Check.checkPass());
 			ps.setInt(3, id);
-			System.out.println("id is ; "+id);
+			
 			int x = ps.executeUpdate();
 			if(x > 0) {
 				message = "Updated successfully!";
@@ -135,7 +130,7 @@ public class EmployeeDaoImpl implements EmployeeDao{
 				
 				Scanner s = new Scanner(System.in);
 				String dur = Check.checkLeaveDur();
-				System.out.println("Enter Reason for leave");
+				System.out.println("Enter Reason For Leave");
 				String reason = s.nextLine();
 				
 				try(Connection conn2 = GetConnection.connection()) {
@@ -147,19 +142,19 @@ public class EmployeeDaoImpl implements EmployeeDao{
 					
 					int i = ps2.executeUpdate();
 					if(i > 0) {
-						message = "Successfully applied for leave !";
+						message = "Successfully Applied For Leave !";
 					}else {
-						message = "Something went wrong";
+						message = "Something Went Wrong";
 					}
 					
 				} catch (SQLException e) {
-					System.out.println("error");
+					
 					message = e.getMessage();
 				}
 				
 				
 			}else {
-				message = "You have already applied for leave !";
+				message = "You Have Already Applied For Leave !";
 			}
 			
 		} catch (SQLException e) {
@@ -176,7 +171,7 @@ public class EmployeeDaoImpl implements EmployeeDao{
 	
 	public String leaveResponse(int id) {
 		
-		String message = "Not Responded yet!";
+		String message = "Not Responded Yet!";
 		
 		try (Connection conn = GetConnection.connection()){
 			
@@ -203,7 +198,7 @@ public class EmployeeDaoImpl implements EmployeeDao{
 							PreparedStatement ps3 = conn3.prepareStatement("UPDATE leaveTable SET reason = null, permission = null,leavedura = null WHERE empId = ?");
 							ps3.setInt(1, id);
 							
-							int set = ps3.executeUpdate();
+							 ps3.executeUpdate();
 							
 							
 						} catch (SQLException e) {

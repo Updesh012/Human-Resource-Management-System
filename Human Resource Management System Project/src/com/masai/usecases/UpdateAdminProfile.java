@@ -2,9 +2,11 @@ package com.masai.usecases;
 
 import java.util.Scanner;
 
+import com.masai.application.AdminOperations;
 import com.masai.application.AdminOrEmployee;
 import com.masai.bean.Admin;
 import com.masai.dao.AdminDaoImpl;
+import com.masai.exception.AdminException;
 
 public class UpdateAdminProfile {
 
@@ -12,7 +14,7 @@ public class UpdateAdminProfile {
 	String email;
 	
 	public UpdateAdminProfile() {
-		// TODO Auto-generated constructor stub
+		
 	}
 	
 	public UpdateAdminProfile(String pass,String email) {
@@ -28,18 +30,30 @@ public class UpdateAdminProfile {
 		
 		AdminDaoImpl adi = new AdminDaoImpl(password,email);
 		
-		System.out.println("enter the name");
+		System.out.println("Enter The New Name");
 		String name =  s.nextLine();
-		System.out.println("enter the password");
-		String pass =  s.nextLine();
-		System.out.println("enter the email");
+		System.out.println("Enter The Email");
 		String email =  s.nextLine();
+		System.out.println("Enter The Password");
+		String pass =  s.nextLine();
 		
 		Admin admin = new Admin(name, pass, email);
 		
-		String res = adi.updateProfile(admin);
-		System.out.println(res);
-		AdminOrEmployee.choice();
+		String res;
+		try {
+			res = adi.updateProfile(admin);
+			System.out.println(res);
+			System.out.println("=============================================");
+			AdminOrEmployee.choice();
+		} catch (AdminException e) {
+			System.out.println(e.getMessage());
+			System.out.println("=============================================");
+			AdminOperations ao = new AdminOperations();
+			ao.adminOper();
+		}
+		
+		
+		
 		
 	}
 	
