@@ -5,6 +5,7 @@ import java.util.Scanner;
 import com.masai.application.AdminOperations;
 import com.masai.application.AdminOrEmployee;
 import com.masai.bean.Admin;
+import com.masai.checkdetails.Check;
 import com.masai.dao.AdminDaoImpl;
 import com.masai.exception.AdminException;
 
@@ -32,10 +33,8 @@ public class UpdateAdminProfile {
 		
 		System.out.println("Enter The New Name");
 		String name =  s.nextLine();
-		System.out.println("Enter The Email");
-		String email =  s.nextLine();
-		System.out.println("Enter The Password");
-		String pass =  s.nextLine();
+		String email = Check.checkemail();
+		String pass = Check.checkPass();
 		
 		Admin admin = new Admin(name, pass, email);
 		
