@@ -61,10 +61,8 @@ email varchar(35) unique not null
  
  insert into leaveTable(emplName,leaveDura,empId) values('ram',2,4);
  
-  
  
 
  
-
  
  

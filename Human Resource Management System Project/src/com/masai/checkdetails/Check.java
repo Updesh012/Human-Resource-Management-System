@@ -201,7 +201,7 @@ public class Check {
 		boolean flag = true;
 		String deptid=null;
 		while(flag) {
-		System.out.println("Press\n 1.) View Your Profile \n 2.) Update Your Profile \n 3.) Apply For Leave \n 4.) Leave Response From Admin \n 5.) Back To Home Screen \n 6.) Exit ");
+		System.out.println("Press\n 1.) View Your Profile \n 2.) Update Your Profile \n 3.) Apply For Leave \n 4.) Leave Response From Admin \n 5.) Back To Home Screen ");
 		System.out.println("=====================================================");
 		String did = s.nextLine();
 			try {
@@ -224,7 +224,7 @@ public class Check {
 		boolean flag = true;
 		String deptid=null;
 		while(flag) {
-		System.out.println("Press\n 1.) Update Your Profile \n 2.) Add New Employee \n 3.) Transfer Employee from One Department To Another \n 4.) Get All The Employees Details \n 5.) Add New Department \n 6.) Update Department Name \n 7.) Get All Departments Details \n 8.) Get All Employees Leave Details \n 9.) Respond To Employee Leave \n 10.) Back to Home screen \n 11.) Exit");
+		System.out.println("Press\n 1.) Update Your Profile \n 2.) Add New Employee \n 3.) Transfer Employee from One Department To Another \n 4.) Get All The Employees Details \n 5.) Add New Department \n 6.) Update Department Name \n 7.) Get All Departments Details \n 8.) Get All Employees Leave Details \n 9.) Respond To Employee Leave \n 10.) Back to Home screen \n");
 		System.out.println("======================================================");
 		String did = s.nextLine();
 			try {

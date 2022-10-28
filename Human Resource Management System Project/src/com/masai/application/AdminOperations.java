@@ -89,10 +89,7 @@ public class AdminOperations {
 			AdminOrEmployee.choice();
 			break;
 		}
-		case 11:{
-			return;
-			
-		}
+		
 		default:
 			System.out.println("Please Press Valid Number");
 			System.out.println("==========================");
